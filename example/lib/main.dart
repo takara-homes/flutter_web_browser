@@ -52,15 +52,15 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                RaisedButton(
+                OutlinedButton(
                   onPressed: () => FlutterWebBrowser.warmup(),
                   child: new Text('Warmup browser website'),
                 ),
-                RaisedButton(
+                OutlinedButton(
                   onPressed: () => openBrowserTab(),
                   child: new Text('Open Flutter website'),
                 ),
-                RaisedButton(
+                OutlinedButton(
                   onPressed: () => openBrowserTab().then(
                     (value) => Future.delayed(
                       Duration(seconds: 5),
@@ -72,7 +72,7 @@ class _MyAppState extends State<MyApp> {
                 ),
                 if (Platform.isAndroid) ...[
                   Text('test Android customizations'),
-                  RaisedButton(
+                  OutlinedButton(
                     onPressed: () {
                       FlutterWebBrowser.openWebPage(
                         url: "https://flutter.io/",
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                 ],
                 if (Platform.isIOS) ...[
                   Text('test iOS customizations'),
-                  RaisedButton(
+                  OutlinedButton(
                     onPressed: () {
                       FlutterWebBrowser.openWebPage(
                         url: "https://flutter.io/",
@@ -107,7 +107,8 @@ class _MyAppState extends State<MyApp> {
                           dismissButtonStyle:
                               SafariViewControllerDismissButtonStyle.close,
                           modalPresentationCapturesStatusBarAppearance: true,
-                          modalPresentationStyle: UIModalPresentationStyle.popover,
+                          modalPresentationStyle:
+                              UIModalPresentationStyle.popover,
                         ),
                       );
                     },

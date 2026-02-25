@@ -103,11 +103,11 @@ class CustomTabsOptions {
   const CustomTabsOptions({
     this.colorScheme = CustomTabsColorScheme.system,
     @Deprecated('Use defaultColorSchemeParams.toolbarColor instead')
-        this.toolbarColor,
+    this.toolbarColor,
     @Deprecated('Use defaultColorSchemeParams.secondaryToolbarColor instead')
-        this.secondaryToolbarColor,
+    this.secondaryToolbarColor,
     @Deprecated('Use defaultColorSchemeParams.navigationBarColor instead')
-        this.navigationBarColor,
+    this.navigationBarColor,
     this.lightColorSchemeParams,
     this.darkColorSchemeParams,
     this.defaultColorSchemeParams,

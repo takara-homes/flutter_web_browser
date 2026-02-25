@@ -47,3 +47,6 @@ build/
 .settings
 example/ios/Flutter/.last_build_id
 .history
+
+# FVM Version Cache
+.fvm/
