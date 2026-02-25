@@ -1,14 +1,9 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/services.dart';
 
-enum SafariViewControllerDismissButtonStyle {
-  done,
-  close,
-  cancel,
-}
+enum SafariViewControllerDismissButtonStyle { done, close, cancel }
 
 class SafariViewControllerOptions {
   final bool barCollapsingEnabled;
@@ -43,8 +38,9 @@ enum CustomTabsShareState {
 }
 
 extension CustomTabsShareStateExtension on CustomTabsShareState {
-  static CustomTabsShareState? fromAddDefaultShareMenuItem(
-      {bool? addDefaultShareMenuItem}) {
+  static CustomTabsShareState? fromAddDefaultShareMenuItem({
+    bool? addDefaultShareMenuItem,
+  }) {
     if (addDefaultShareMenuItem != null) {
       if (addDefaultShareMenuItem) {
         return CustomTabsShareState.on;
@@ -122,7 +118,7 @@ class CustomTabsOptions {
 extension _hexColor on Color {
   /// Returns the color value as ARGB hex value.
   String get hexColor {
-    return '#' + value.toRadixString(16).padLeft(8, '0');
+    return '#' + toARGB32().toRadixString(16).padLeft(8, '0');
   }
 }
 
@@ -199,18 +195,17 @@ class FlutterWebBrowser {
   }) {
     final CustomTabsColorSchemeParams customTabsDefaultColorSchemeParams =
         customTabsOptions.defaultColorSchemeParams ??
-            CustomTabsColorSchemeParams(
-              toolbarColor: customTabsOptions.toolbarColor,
-              secondaryToolbarColor: customTabsOptions.secondaryToolbarColor,
-              navigationBarColor: customTabsOptions.navigationBarColor,
-            );
+        CustomTabsColorSchemeParams(
+          toolbarColor: customTabsOptions.toolbarColor,
+          secondaryToolbarColor: customTabsOptions.secondaryToolbarColor,
+          navigationBarColor: customTabsOptions.navigationBarColor,
+        );
     final CustomTabsShareState customTabsShareState =
         customTabsOptions.shareState ??
-            CustomTabsShareStateExtension.fromAddDefaultShareMenuItem(
-              addDefaultShareMenuItem:
-                  customTabsOptions.addDefaultShareMenuItem,
-            ) ??
-            CustomTabsShareState.default_;
+        CustomTabsShareStateExtension.fromAddDefaultShareMenuItem(
+          addDefaultShareMenuItem: customTabsOptions.addDefaultShareMenuItem,
+        ) ??
+        CustomTabsShareState.default_;
 
     return _channel.invokeMethod('openWebPage', {
       "url": url,
@@ -220,8 +215,8 @@ class FlutterWebBrowser {
             ?.toMethodChannelArgumentMap(),
         'darkColorSchemeParams': customTabsOptions.darkColorSchemeParams
             ?.toMethodChannelArgumentMap(),
-        'defaultColorSchemeParams':
-            customTabsDefaultColorSchemeParams.toMethodChannelArgumentMap(),
+        'defaultColorSchemeParams': customTabsDefaultColorSchemeParams
+            .toMethodChannelArgumentMap(),
         'instantAppsEnabled': customTabsOptions.instantAppsEnabled,
         'shareState': customTabsShareState.index,
         'showTitle': customTabsOptions.showTitle,
